@@ -32,7 +32,6 @@ syn match   cleanReal           "[+-~]\?\<\d\+\.\d+\(E[+-~]\?\d+\)\?" display
 syn keyword cleanBool           True False
 
 syn match   cleanOperator       "[-~@#$%^?!+*<>\/|&=:.]\+" display
-syn match   cleanOperator       "\s\+o\s\+" display
 " syn match   cleanDelimiter      "=\(:\)\?\|:==\|\\\|->\|<-\(:\)\?" display
 syn match   cleanDelimiter      "(\|)\|\[\(:\|#\|!\)\?\|\]\|{\(:\|#\|!\||\)\?\|\(:\||\)\?}\|,\|;" display
 " syn match   cleanSpecial        "\<_\>" display
