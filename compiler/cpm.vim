@@ -16,9 +16,14 @@ set cpo&vim
 " Setups: {{{1
 " =======
 
-let b:clean_project_file = glob('*.prj') "FIXME may return multiple files
+let b:clean_module = expand('%:t:r', 1)
+let b:clean_project_file = b:clean_module . '.prj'
 
-let &l:makeprg = 'cpm project ' . b:clean_project_file . ' build'
+if filereadable(b:clean_project_file)
+	let &l:makeprg = 'cpm project ' . b:clean_project_file . ' build'
+else
+	let &l:makeprg = 'cpm make'
+endif
 
 setlocal isfname-=,
 let &l:errorformat  = '%E%trror [%f\,%l]: %m' " General error (without location info)
