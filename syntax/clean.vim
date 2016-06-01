@@ -39,7 +39,7 @@ syn match   cleanDelimiter      "(\|)\|\[\(:\|#\|!\)\?\|\]\|{\(:\|#\|!\||\)\?\|\
 syn match   cleanFunction       "^\s*\((\(\a\w*`\?\|[-~@#$%^?!+*<>\/|&=:.]\+\))\|\a\w*`\?\)\(\_s\+infix[lr]\?\s\+\d\)\?\_s*::\_s*" display contains=TOP
 syn match   cleanLambda         "\\\s*\(\a\w*`\?\s\+\)\+\(\.\|->\|=\)" display contains=TOP
 syn match   cleanType           "^\s*::\s*\u\w*`\?`" display contains=TOP
-syn match   cleanQualified      "\('\w\+`\?'\|\w\+`\?\)\." display
+syn match   cleanQualified      "'\w\+`\?'\." display
 " syn match   cleanIdentifier     "\<\l\w*`\?\>" display
 " syn match   cleanConstructor    "\<\u\w*`\?\>" display
 " syn match   cleanType           ".\+\_s\+->\_s\+.\+" contained contains=TOP
@@ -76,7 +76,7 @@ hi def link cleanDelimiter      Delimiter
 hi def link cleanFunction       Function
 hi def link cleanLambda         Identifier
 hi def link cleanType           Type
-hi def link cleanQualified      Normal 
+hi def link cleanQualified      Include
 " hi def link cleanIdentifer      Identifier
 " hi def link cleanConstructor    Type
 " hi def link cleanAnnotation     Special
