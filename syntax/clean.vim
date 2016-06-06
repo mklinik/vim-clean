@@ -25,8 +25,11 @@ syn match   cleanModule         "^\s*\(\(implementation\|definition\|system\)\s\
 syn keyword cleanImport         from import as qualified
 " syn region  cleanImport         start="^\s*\(from\|import\|\s\+\(as\|qualified\)\)" end="$" 
 
+syn match   cleanSpecialChar    contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&abfnrtv]\)"
+syn match   cleanChar           "'\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&abfnrtv]\)'" display
 syn match   cleanChar           "'.'" display
-syn region  cleanString         start=/"/ skip=/\\"/ end=/"/ oneline contains=@Spell
+syn region  cleanString         start=+"+ skip=+\\\\\|\\"+ end=+"+ oneline contains=cleanSpecialChar
+syn region  cleanCharList       start=+'+ skip=+\\\\\|\\'+ end=+'+ oneline contains=cleanSpecialChar
 syn match   cleanInteger        "[+-~]\?\<\(\d\+\|0[0-7]\+\|0x[0-9A-Fa-f]\+\)\>" display
 syn match   cleanReal           "[+-~]\?\<\d\+\.\d+\(E[+-~]\?\d+\)\?" display
 syn keyword cleanBool           True False
@@ -64,9 +67,11 @@ hi def link cleanModule         Include
 hi def link cleanImport         Include
 
 hi def link cleanChar           Character
+hi def link cleanCharList       Character
 hi def link cleanInteger        Number
 hi def link cleanReal           Float
 hi def link cleanString         String
+hi def link cleanSpecialChar    String
 hi def link cleanBool           Boolean
 
 hi def link cleanOperator       Operator
