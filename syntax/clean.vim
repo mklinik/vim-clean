@@ -44,6 +44,8 @@ syn region  cleanComment        start="//"      end="$"   contains=@Spell onelin
 syn region  cleanComment        start="/\*"     end="\*/" contains=cleanComment,@Spell
 syn region  cleanComment        start="^\s*/\*" end="\*/" contains=cleanComment,@Spell fold keepend extend
 
+syn region  cleanRecordDef      start="{"       end="}"   transparent fold
+
 hi def link cleanConditional    Conditional
 hi def link cleanStatement      Statement
 hi def link cleanClass          Keyword
