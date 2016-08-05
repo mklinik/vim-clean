@@ -38,6 +38,78 @@ endif
 
 map <buffer> <LocalLeader>m :call <SID>CleanSwitchModule()<CR>
 
+if !exists("*s:CloogleWindow")
+  function! s:CloogleWindow()
+    if !exists('s:cloogle_window_file')
+      let s:cloogle_window_file = tempname()
+    endif
+  
+    if bufloaded(s:cloogle_window_file)
+      execute 'silent bdelete' s:cloogle_window_file
+    endif
+    call writefile(g:clean#cloogle#window, s:cloogle_window_file)
+    execute 'silent pedit ' . s:cloogle_window_file
+  
+    wincmd P |
+    wincmd J
+    resize +10
+  
+    set bufhidden=wipe
+    setlocal buftype=nofile noswapfile readonly nomodifiable filetype=clean
+  endfunction
+endif
+
+if !exists("*s:CloogleFormatResult")
+  function! s:CloogleFormatResult(result)
+    let rtype = a:result[0]
+    let rloc = a:result[1][0]
+    let rextra = a:result[1][1]
+    let locstring = rloc.modul . ' in ' . rloc.library
+    let extrastring = []
+    if rtype == 'FunctionResult'
+      let extrastring = [rextra.func]
+    elseif rtype == 'TypeResult'
+      let extrastring = split(rextra.type, "\n")
+    elseif rtype == 'ClassResult'
+      let extrastring = ['class ' . rextra.class_heading . ' where']
+      for class_fun in rextra.class_funs
+        let extrastring += ["\t" . class_fun]
+      endfor
+    endif
+    return ['// ' . locstring . ':'] + extrastring
+  endfunction
+endif
+
+if !exists("*s:CloogleSearch")
+  function! s:CloogleSearch(str)
+    let url = 'http://cloogle.org/api.php?str=' . shellescape(a:str)
+    let ret = eval(substitute(system('curl -s ' . url), "\n", "", ""))
+    let nr = len(ret.data)
+    let total = nr
+    if exists("ret.more_available")
+      let total += ret.more_available
+    endif
+    let g:clean#cloogle#window =
+          \ [ '/**'
+          \ , printf(' * Cloogle search for "%s" (%d of %d result(s))',
+                \ a:str, nr, total)
+          \ , ' *'
+          \ , ' * For more information, see:'
+          \ , ' * http://cloogle.org/#' . a:str
+          \ , ' */'
+          \ , ''
+          \ ]
+    for result in ret.data
+      let g:clean#cloogle#window += s:CloogleFormatResult(result) + ['']
+    endfor
+    call s:CloogleWindow()
+    9
+  endfunction
+endif
+
+command! -nargs=+ Cloogle :call <SID>CloogleSearch(<q-args>)
+command! CloogleWindow :call <SID>CloogleWindow()
+
 let b:all_tag_files = split(globpath('./Clean\ System\ Files/ctags', '*_tags'), '\n')
 for b:tag_file_name in b:all_tag_files
   exec "set tags+=" . substitute(b:tag_file_name, "Clean System Files", "Clean\\\\\\\\\\\\\ System\\\\\\\\\\\\ Files", "") . ";"
