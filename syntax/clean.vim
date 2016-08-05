@@ -42,9 +42,7 @@ syn match   cleanQualified      "'\w\+`\?'\." display
 syn keyword cleanTodo           TODO FIXME XXX BUG NB contained containedin=cleanComment
 syn region  cleanComment        start="//"      end="$"   contains=@Spell oneline display
 syn region  cleanComment        start="/\*"     end="\*/" contains=cleanComment,@Spell
-if has('fold')
-  syn region  cleanComment      start="^\s*/\*" end="\*/" contains=cleanComment,@Spell fold
-endif
+syn region  cleanComment        start="^\s*/\*" end="\*/" contains=cleanComment,@Spell fold keepend extend
 
 hi def link cleanConditional    Conditional
 hi def link cleanStatement      Statement
