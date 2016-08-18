@@ -43,17 +43,17 @@ if !exists("*s:CloogleWindow")
     if !exists('s:cloogle_window_file')
       let s:cloogle_window_file = tempname()
     endif
-  
+
     if bufloaded(s:cloogle_window_file)
       execute 'silent bdelete' s:cloogle_window_file
     endif
     call writefile(g:clean#cloogle#window, s:cloogle_window_file)
     execute 'silent pedit ' . s:cloogle_window_file
-  
+
     wincmd P |
     wincmd J
     resize +10
-  
+
     set bufhidden=wipe
     setlocal buftype=nofile noswapfile readonly nomodifiable filetype=clean
   endfunction
@@ -64,7 +64,11 @@ if !exists("*s:CloogleFormatResult")
     let rtype = a:result[0]
     let rloc = a:result[1][0]
     let rextra = a:result[1][1]
-    let locstring = rloc.modul . ' in ' . rloc.library
+    if exists("rloc.builtin") && rloc.builtin == 1
+      let locstring = 'builtin'
+    else
+      let locstring = rloc.modul . ' in ' . rloc.library
+    endif
     let extrastring = []
     if rtype == 'FunctionResult'
       let extrastring = [rextra.func]
@@ -75,6 +79,8 @@ if !exists("*s:CloogleFormatResult")
       for class_fun in rextra.class_funs
         let extrastring += ["\t" . class_fun]
       endfor
+    elseif rtype == 'MacroResult'
+      let extrastring = split(rextra.macro_representation, "\n")
     endif
     return ['// ' . locstring . ':'] + extrastring
   endfunction
@@ -83,6 +89,8 @@ endif
 if !exists("*s:CloogleSearch")
   function! s:CloogleSearch(str)
     let url = 'http://cloogle.org/api.php?str=' . shellescape(a:str)
+    let true = 1
+    let false = 0
     let ret = eval(substitute(system('curl -s ' . url), "\n", "", ""))
     let nr = len(ret.data)
     let total = nr
@@ -118,3 +126,4 @@ endfor
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
+" vim: expandtab shiftwidth=2 tabstop=2
