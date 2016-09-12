@@ -88,7 +88,7 @@ endif
 
 if !exists("*s:CloogleSearch")
   function! s:CloogleSearch(str)
-    let url = 'http://cloogle.org/api.php?str=' . shellescape(a:str)
+    let url = 'https://cloogle.org/api.php?str=' . shellescape(a:str)
     let true = 1
     let false = 0
     let ret = eval(substitute(system('curl -s ' . url), "\n", "", ""))
@@ -103,7 +103,7 @@ if !exists("*s:CloogleSearch")
                 \ a:str, nr, total)
           \ , ' *'
           \ , ' * For more information, see:'
-          \ , ' * http://cloogle.org/#' . a:str
+          \ , ' * https://cloogle.org/#' . a:str
           \ , ' */'
           \ , ''
           \ ]
