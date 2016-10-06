@@ -8,7 +8,7 @@ additional features.
 
 ### Features
 
-* Syntax highlighting
+* Syntax highlighting for Clean and ABC code
 * Switching between definition and implementation module
 * Compiler errorformats
 * [Cloogle][cloogle] integration
