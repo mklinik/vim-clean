@@ -76,7 +76,6 @@ hi def link cleanTodo           Todo
 hi def link cleanComment        Comment
 
 syntax sync ccomment cleanComment
-setlocal foldmethod=syntax
 
 let b:current_syntax = 'clean'
 
