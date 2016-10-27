@@ -95,7 +95,7 @@ if !exists("*s:CloogleSearch")
     if executable('curl') == 0
         let g:clean#cloogle#window = ["Curl is not installed"]
     else
-        let curl = g:clean_curlpath . '-A vim-clean -G -s --data-urlencode '
+        let curl = g:clean_curlpath . ' -A vim-clean -G -s --data-urlencode '
         let data = shellescape('str=' . a:str)
         let url = shellescape('https://cloogle.org/api.php')
         let true = 1
