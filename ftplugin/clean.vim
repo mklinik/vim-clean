@@ -120,11 +120,25 @@ endif
 if !exists("*s:CloogleComplete")
   function! s:CloogleComplete(lead, line, pos)
     let res = []
+
+    " Cloogle search strings
     for s in ['class', 'type', '::']
       if stridx(s, a:lead) == 0
         call add(res, s . ' ')
       endif
     endfor
+
+    " Function names
+    let text = join(getline(1, '$'), "\n")
+    let matches = []
+    call substitute(text, '[a-zA-Z0-9_][a-zA-Z0-9_`]\+', '\=add(matches, submatch(0))', 'g')
+    let matches = uniq(sort(matches))
+    for name in matches
+      if stridx(name, a:lead) == 0
+        call add(res, name)
+      endif
+    endfor
+
     return res
   endfunction
 endif
