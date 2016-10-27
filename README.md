@@ -13,6 +13,8 @@ additional features. Minor contributions have been done by
 * Switching between definition and implementation module
 * Compiler errorformats
 * [Cloogle][cloogle] integration (note that this requires [curl][curl])
+* Access to the pluginmanual via `:h clean`. Make sure to run `:Helptags` at
+  least once to update the helpfiles.
 
 ### Available commands
 
