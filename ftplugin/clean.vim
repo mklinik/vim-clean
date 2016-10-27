@@ -88,11 +88,12 @@ endif
 
 if !exists("*s:CloogleSearch")
   function! s:CloogleSearch(str)
-    let url = 'https://cloogle.org/api.php?str=' . shellescape(a:str)
-    let curl = 'curl -A vim-clean -s '
+    let curl = 'curl -A vim-clean -G -s --data-urlencode '
+    let data = shellescape('str=' . a:str)
+    let url = shellescape('https://cloogle.org/api.php')
     let true = 1
     let false = 0
-    let ret = eval(substitute(system(curl . url), "\n", "", ""))
+    let ret = eval(substitute(system(curl . data . ' ' . url), "\n", "", ""))
     let nr = len(ret.data)
     let total = nr
     if exists("ret.more_available")
