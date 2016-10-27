@@ -17,24 +17,26 @@ Path of the curl executable (default: curl).
 ======================================================================
 FEATURES                                                 *CleanFeatures*
 
-* Filetype detection for clean and abc code
+* Filetype detection for Clean and ABC code
 
-* Syntax highlighting for clean and abc code
+* Syntax highlighting for Clean and ABC code
 
 * Cloogle support to search on https://cloogle.org from within vim
 
 :Cloogle *searchstr*
-This sends *searchstr* to the cloogle and opens the results in a split
+This sends `searchstr` to Cloogle and opens the results in a split
 
 :CloogleWindow
 This opens the latest Cloogle search window
 
-* Jump back and forth between the *icl* and *dcl* file with `<LocalLeader>m`
+* Jump back and forth between the `icl` and `dcl` file with `<LocalLeader>m`
 
 ======================================================================
 ABOUT                                                        *CleanAbout*
 
-This plugin was originally written by *norm2782*. The syntax was 
-adapted by *timjs*. This is a fork of that syntax by *camilstaps*, with
+This plugin was originally written by `norm2782`. The syntax was
+adapted by `timjs`. This is a fork of that syntax by `camilstaps`, with
 several highlighting improvements and additional features. Minor
-contributions have been done by *dopefishh*.
+contributions have been done by `dopefishh`.
+
+vim:tw=78:ts=8:ft=help:norl:
