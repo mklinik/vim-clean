@@ -5,13 +5,12 @@ CONTENTS                                                 *CleanContents*
 
     1. Options .............. |CleanOptions|
     2. Features ............. |CleanFeatures|
-    3. License .............. |CleanLicense|
-    4. About ................ |CleanAbout|
+    3. About ................ |CleanAbout|
 
 ======================================================================
 OPTIONS                                                   *CleanOptions*
 
-Path of the curl executable (default: curl).
+Path of the curl executable (default: `curl`).
     g:clean_curlpath
 
 ======================================================================
@@ -21,18 +20,20 @@ FEATURES                                                 *CleanFeatures*
 
 * Syntax highlighting for Clean and ABC code
 
-* Cloogle support to search on https://cloogle.org from within vim
+* *Cloogle* support to search on https://cloogle.org from within vim
 
-:Cloogle *searchstr*
+                                                              *:Cloogle*
+:Cloogle {searchstr}
 This sends `searchstr` to Cloogle and opens the results in a split
 
+                                                        *:CloogleWindow*
 :CloogleWindow
 This opens the latest Cloogle search window
 
-* Jump back and forth between the `icl` and `dcl` file with `<LocalLeader>m`
+* Jump back and forth between the *icl* and *dcl* file with `<LocalLeader>m`
 
 ======================================================================
-ABOUT                                                        *CleanAbout*
+ABOUT                                                       *CleanAbout*
 
 This plugin was originally written by `norm2782`. The syntax was
 adapted by `timjs`. This is a fork of that syntax by `camilstaps`, with
