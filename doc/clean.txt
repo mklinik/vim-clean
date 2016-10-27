@@ -32,7 +32,7 @@ This opens the latest Cloogle search window
 * Jump back and forth between the *icl* and *dcl* file with `<LocalLeader>m`
 
 ======================================================================
-ABOUT                                                       *PraatAbout*
+ABOUT                                                        *CleanAbout*
 
 This plugin was originally written by *norm2782*. The syntax was 
 adapted by *timjs*. This is a fork of that syntax by *camilstaps*, with
