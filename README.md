@@ -12,7 +12,7 @@ additional features. Minor contributions have been done by
 * Syntax highlighting for Clean and ABC code
 * Switching between definition and implementation module
 * Compiler errorformats
-* [Cloogle][cloogle] integration (note that this requires `curl`)
+* [Cloogle][cloogle] integration (note that this requires [curl][curl])
 
 ### Available commands
 
@@ -26,3 +26,4 @@ additional features. Minor contributions have been done by
 [norm2782-vim-clean]: https://github.com/norm2782/vim-clean
 [timjs-syntax]: https://github.com/timjs/vim-clean/tree/timjs-syntax
 [dopefishh]: https://github.com/dopefishh
+[curl]: https://curl.haxx.se/
