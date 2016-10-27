@@ -11,7 +11,7 @@ additional features.
 * Syntax highlighting for Clean and ABC code
 * Switching between definition and implementation module
 * Compiler errorformats
-* [Cloogle][cloogle] integration
+* [Cloogle][cloogle] integration (note that this requires `curl`)
 
 ### Available commands
 
