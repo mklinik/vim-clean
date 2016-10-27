@@ -117,7 +117,19 @@ if !exists("*s:CloogleSearch")
   endfunction
 endif
 
-command! -nargs=+ Cloogle :call <SID>CloogleSearch(<q-args>)
+if !exists("*s:CloogleComplete")
+  function! s:CloogleComplete(lead, line, pos)
+    let res = []
+    for s in ['class', 'type', '::']
+      if stridx(s, a:lead) == 0
+        call add(res, s . ' ')
+      endif
+    endfor
+    return res
+  endfunction
+endif
+
+command! -complete=customlist,<SID>CloogleComplete -nargs=+ Cloogle :call <SID>CloogleSearch(<q-args>)
 command! CloogleWindow :call <SID>CloogleWindow()
 
 let b:all_tag_files = split(globpath('./Clean\ System\ Files/ctags', '*_tags'), '\n')
