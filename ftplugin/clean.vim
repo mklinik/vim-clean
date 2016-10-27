@@ -24,13 +24,17 @@ setlocal suffixesadd=.icl,.dcl
 
 compiler cpm
 
+if !exists("g:clean_curlpath")
+    let g:clean_curlpath = "curl"
+endif
+
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule()
     let file_name = expand("%:r")
     if expand("%:e") == "icl"
-      let new_file_name = file_name . "." . "dcl"
+      let new_file_name = file_name . ".dcl"
     else
-      let new_file_name = file_name . "." . "icl"
+      let new_file_name = file_name . ".icl"
     endif
     exec "edit " . new_file_name
   endfunction
@@ -88,30 +92,34 @@ endif
 
 if !exists("*s:CloogleSearch")
   function! s:CloogleSearch(str)
-    let curl = 'curl -A vim-clean -G -s --data-urlencode '
-    let data = shellescape('str=' . a:str)
-    let url = shellescape('https://cloogle.org/api.php')
-    let true = 1
-    let false = 0
-    let ret = eval(substitute(system(curl . data . ' ' . url), "\n", "", ""))
-    let nr = len(ret.data)
-    let total = nr
-    if exists("ret.more_available")
-      let total += ret.more_available
+    if executable('curl') == 0
+        let g:clean#cloogle#window = ["Curl is not installed"]
+    else
+        let curl = g:clean_curlpath . ' -A vim-clean -G -s --data-urlencode '
+        let data = shellescape('str=' . a:str)
+        let url = shellescape('https://cloogle.org/api.php')
+        let true = 1
+        let false = 0
+        let ret = eval(substitute(system(curl . data . ' ' . url), "\n", "", ""))
+        let nr = len(ret.data)
+        let total = nr
+        if exists("ret.more_available")
+          let total += ret.more_available
+        endif
+        let g:clean#cloogle#window =
+              \ [ '/**'
+              \ , printf(' * Cloogle search for "%s" (%d of %d result(s))',
+                    \ a:str, nr, total)
+              \ , ' *'
+              \ , ' * For more information, see:'
+              \ , ' * https://cloogle.org/#' . a:str
+              \ , ' */'
+              \ , ''
+              \ ]
+        for result in ret.data
+          let g:clean#cloogle#window += s:CloogleFormatResult(result) + ['']
+        endfor
     endif
-    let g:clean#cloogle#window =
-          \ [ '/**'
-          \ , printf(' * Cloogle search for "%s" (%d of %d result(s))',
-                \ a:str, nr, total)
-          \ , ' *'
-          \ , ' * For more information, see:'
-          \ , ' * https://cloogle.org/#' . a:str
-          \ , ' */'
-          \ , ''
-          \ ]
-    for result in ret.data
-      let g:clean#cloogle#window += s:CloogleFormatResult(result) + ['']
-    endfor
     call s:CloogleWindow()
     9
   endfunction

@@ -4,14 +4,17 @@
 This plugin was originally written by [norm2782][norm2782-vim-clean]. The
 syntax was adapted by [timjs][timjs-syntax]. This is a fork of that syntax by
 [Camil Staps][camilstaps], with several highlighting improvements and
-additional features.
+additional features. Minor contributions have been done by 
+[Mart Lubbers][dopefishh].
 
 ### Features
 
 * Syntax highlighting for Clean and ABC code
 * Switching between definition and implementation module
 * Compiler errorformats
-* [Cloogle][cloogle] integration
+* [Cloogle][cloogle] integration (note that this requires [curl][curl])
+* Access to the pluginmanual via `:h clean`. Make sure to run `:Helptags` at
+  least once to update the helpfiles.
 
 ### Available commands
 
@@ -24,3 +27,5 @@ additional features.
 [cloogle]: http://cloogle.org
 [norm2782-vim-clean]: https://github.com/norm2782/vim-clean
 [timjs-syntax]: https://github.com/timjs/vim-clean/tree/timjs-syntax
+[dopefishh]: https://github.com/dopefishh
+[curl]: https://curl.haxx.se/
