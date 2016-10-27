@@ -1,0 +1,40 @@
+*clean.txt* Clean plugin
+
+======================================================================
+CONTENTS                                                 *CleanContents*
+
+    1. Options .............. |CleanOptions|
+    2. Features ............. |CleanFeatures|
+    3. License .............. |CleanLicense|
+    4. About ................ |CleanAbout|
+
+======================================================================
+OPTIONS                                                   *CleanOptions*
+
+Path of the curl executable (default: curl).
+    g:clean_curlpath
+
+======================================================================
+FEATURES                                                 *CleanFeatures*
+
+* Filetype detection for clean and abc code
+
+* Syntax highlighting for clean and abc code
+
+* Cloogle support to search on https://cloogle.org from within vim
+
+:Cloogle *searchstr*
+This sends *searchstr* to the cloogle and opens the results in a split
+
+:CloogleWindow
+This opens the latest Cloogle search window
+
+* Jump back and forth between the *icl* and *dcl* file with `<LocalLeader>m`
+
+======================================================================
+ABOUT                                                       *PraatAbout*
+
+This plugin was originally written by *norm2782*. The syntax was 
+adapted by *timjs*. This is a fork of that syntax by *camilstaps*, with
+several highlighting improvements and additional features. Minor
+contributions have been done by *dopefishh*.

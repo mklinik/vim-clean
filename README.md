@@ -4,7 +4,8 @@
 This plugin was originally written by [norm2782][norm2782-vim-clean]. The
 syntax was adapted by [timjs][timjs-syntax]. This is a fork of that syntax by
 [Camil Staps][camilstaps], with several highlighting improvements and
-additional features.
+additional features. Minor contributions have been done by 
+[Mart Lubbers][dopefishh].
 
 ### Features
 
@@ -24,3 +25,4 @@ additional features.
 [cloogle]: http://cloogle.org
 [norm2782-vim-clean]: https://github.com/norm2782/vim-clean
 [timjs-syntax]: https://github.com/timjs/vim-clean/tree/timjs-syntax
+[dopefishh]: https://github.com/dopefishh
