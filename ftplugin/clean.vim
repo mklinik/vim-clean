@@ -24,6 +24,10 @@ setlocal suffixesadd=.icl,.dcl
 
 compiler cpm
 
+if !exists("g:clean_curlpath")
+    let g:clean_curlpath = "curl"
+endif
+
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule()
     let file_name = expand("%:r")
@@ -91,7 +95,7 @@ if !exists("*s:CloogleSearch")
     if executable('curl') == 0
         let g:clean#cloogle#window = ["Curl is not installed"]
     else
-        let curl = 'curl -A vim-clean -G -s --data-urlencode '
+        let curl = g:clean_curlpath . '-A vim-clean -G -s --data-urlencode '
         let data = shellescape('str=' . a:str)
         let url = shellescape('https://cloogle.org/api.php')
         let true = 1
