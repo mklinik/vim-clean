@@ -29,18 +29,21 @@ if !exists("g:clean_curlpath")
 endif
 
 if !exists("*s:CleanSwitchModule")
-  function s:CleanSwitchModule()
+  function s:CleanSwitchModule(cmd)
     let file_name = expand("%:r")
-    if expand("%:e") == "icl"
-      let new_file_name = file_name . ".dcl"
+    if expand('%:e') == 'icl'
+      let new_file_name = file_name . '.dcl'
     else
-      let new_file_name = file_name . ".icl"
+      let new_file_name = file_name . '.icl'
     endif
-    exec "edit " . new_file_name
+    exec a:cmd . ' ' . new_file_name
   endfunction
 endif
 
-map <buffer> <LocalLeader>m :call <SID>CleanSwitchModule()<CR>
+command! -nargs=1 CleanSwitchModule :call <SID>CleanSwitchModule(<args>)
+map <buffer> <LocalLeader>mm :call <SID>CleanSwitchModule('edit')<CR>
+map <buffer> <LocalLeader>mt :call <SID>CleanSwitchModule('tabedit')<CR>
+map <buffer> <LocalLeader>ms :call <SID>CleanSwitchModule('split')<CR>
 
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()
@@ -153,6 +156,8 @@ endif
 
 command! -complete=customlist,<SID>CloogleComplete -nargs=+ Cloogle :call <SID>CloogleSearch(<q-args>)
 command! CloogleWindow :call <SID>CloogleWindow()
+
+map <buffer> <LocalLeader>c :call <SID>CloogleSearch(expand('<cword>'))<CR>
 
 let b:all_tag_files = split(globpath('./Clean\ System\ Files/ctags', '*_tags'), '\n')
 for b:tag_file_name in b:all_tag_files

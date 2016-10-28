@@ -1,43 +1,103 @@
-*clean.txt* Clean plugin
+*clean.txt* *Clean* plugin                                  *vim-clean* *clean*
 
-======================================================================
-CONTENTS                                                 *CleanContents*
+=======================================================================
+CONTENTS                                                 *clean-contents*
 
-    1. Options .............. |CleanOptions|
-    2. Features ............. |CleanFeatures|
-    3. About ................ |CleanAbout|
+  Options ................... |clean-options|
+  Features .................. |clean-features|
+    Filetype detection ...... |clean-filetypes|
+    Syntax highlighting ..... |clean-highlighting|
+    Module switching ........ |clean-modules|
+    Cloogle ................. |clean-cloogle|
+    Compilers ............... |clean-compilers|
+  About ..................... |clean-about|
 
-======================================================================
-OPTIONS                                                   *CleanOptions*
+=======================================================================
+OPTIONS                                                   *clean-options*
 
-Path of the curl executable (default: `curl`).
-    g:clean_curlpath
+*g:clean_curlpath*
+  Path of the curl executable (default: `curl`).
 
-======================================================================
-FEATURES                                                 *CleanFeatures*
+=======================================================================
+FEATURES                                                 *clean-features*
 
-* Filetype detection for Clean and ABC code
+-----------------------------------------------------------------------
+Filetype detection~
+                                                        *clean-filetypes*
 
-* Syntax highlighting for Clean and ABC code
+|vim-clean| detects `*.icl` and `*.dcl` as Clean code and `*.abc` as ABC code.
 
-* *Cloogle* support to search on https://cloogle.org from within vim
+-----------------------------------------------------------------------
+Syntax highlighting~
+                                                     *clean-highlighting*
 
-                                                              *:Cloogle*
-:Cloogle {searchstr}
-This sends `searchstr` to Cloogle and opens the results in a split
+|vim-clean| overrides Vim's default syntax highlighting for Clean code,
+which often breaks when using nested brackets.
 
-                                                        *:CloogleWindow*
-:CloogleWindow
-This opens the latest Cloogle search window
+Vim does not have built-in support for ABC code syntax highlighting,
+but |vim-clean| provides it.
 
-* Jump back and forth between the *icl* and *dcl* file with `<LocalLeader>m`
+-----------------------------------------------------------------------
+Module switching~
+                                                  *clean-modules* *icl* *dcl*
+|vim-clean| lets you easily switch between implementation (`*.icl`) and
+definition (`*.dcl`) module.
 
-======================================================================
-ABOUT                                                       *CleanAbout*
+*:CleanSwitchModule* {editcmd}
+*CleanSwitchModule()*
+  Call {editcmd} `<other>`, where `<other>` is the filename of the other
+  module.
+  See also |clean-mm|, |clean-mt|, |clean-ms|.
+
+`<LocalLeader>mm` *clean-mm*
+  Open the other module in the current window (maps to
+  `:CleanSwitchModule('edit')`; see |CleanSwitchModule()|).
+
+`<LocalLeader>mt` *clean-mt*
+  Open the other module in a new tab (maps to
+  `:CleanSwitchModule('tabedit')`; see |CleanSwitchModule()|).
+
+`<LocalLeader>ms` *clean-ms*
+  Open the other module in a new split (maps to
+  `:CleanSwitchModule('split')`; see |CleanSwitchModule()|).
+
+-----------------------------------------------------------------------
+Cloogle~
+                                          *clean-cloogle* *cloogle* *Cloogle* 
+
+|vim-clean| lets you search on https://cloogle.org from within Vim.
+
+*:Cloogle* {searchstr}
+  Sends {searchstr} to |Cloogle| and opens the results in a split.
+  See also |clean-c|.
+
+`<LocalLeader>c` *clean-c*
+  Search on |Cloogle| for the word under the cursor.
+  See also |:Cloogle|.
+
+*:CloogleWindow*
+  Opens the latest |Cloogle| search window.
+
+-----------------------------------------------------------------------
+Compilers~
+                                                        *clean-compilers*
+
+*cpm*
+  Currently, there is a `cpm.vim` compiler file for the Clean Project
+  Manager `cpm`. The author advises against using `cpm` and recommends `clm`
+  instead. Errorformats for `clm` are on the todo list (see |clm|).
+
+*clm*
+  Currently not supported. Support is planned.
+
+=======================================================================
+ABOUT                                                       *clean-about*
+
+Maintainer: Camil Staps <info@camilstaps.nl>
 
 This plugin was originally written by `norm2782`. The syntax was
 adapted by `timjs`. This is a fork of that syntax by `camilstaps`, with
 several highlighting improvements and additional features. Minor
-contributions have been done by `dopefishh`.
+contributions have been made by `dopefishh`.
 
-vim:tw=78:ts=8:ft=help:norl:
+vim:tw=71:cc=72:ts=8:ai:ft=help:norl:
