@@ -61,6 +61,10 @@ definition (`*.dcl`) module.
   Open the other module in a new split (maps to
   `:CleanSwitchModule('split')`; see |CleanSwitchModule()|).
 
+`<LocalLeader>mv` *clean-mv*
+  Open the other module in a new vertical split (maps to
+  `:CleanSwitchModule('vsplit')`; see |CleanSwitchModule()|).
+
 -----------------------------------------------------------------------
 Cloogle~
                                           *clean-cloogle* *cloogle* *Cloogle* 
