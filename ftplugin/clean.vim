@@ -30,13 +30,8 @@ endif
 
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
-    let file_name = expand("%:r")
-    if expand('%:e') == 'icl'
-      let new_file_name = file_name . '.dcl'
-    else
-      let new_file_name = file_name . '.icl'
-    endif
-    exec a:cmd . ' ' . new_file_name
+    let basename = expand("%:r")
+    exec a:cmd . ' ' . basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
   endfunction
 endif
 
@@ -44,6 +39,7 @@ command! -nargs=1 CleanSwitchModule :call <SID>CleanSwitchModule(<args>)
 map <buffer> <LocalLeader>mm :call <SID>CleanSwitchModule('edit')<CR>
 map <buffer> <LocalLeader>mt :call <SID>CleanSwitchModule('tabedit')<CR>
 map <buffer> <LocalLeader>ms :call <SID>CleanSwitchModule('split')<CR>
+map <buffer> <LocalLeader>mv :call <SID>CleanSwitchModule('vsplit')<CR>
 
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()
