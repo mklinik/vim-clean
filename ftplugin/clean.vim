@@ -43,6 +43,11 @@ map <buffer> <LocalLeader>mv :call <SID>CleanSwitchModule('vsplit')<CR>
 
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()
+    if !exists('g:clean#cloogle#window')
+      echo 'First search using :Cloogle, then you may open a window'
+      return
+    endif
+
     if !exists('s:cloogle_window_file')
       let s:cloogle_window_file = tempname()
     endif

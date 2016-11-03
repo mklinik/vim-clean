@@ -80,7 +80,8 @@ Cloogle~
   See also |:Cloogle|.
 
 *:CloogleWindow*
-  Opens the latest |Cloogle| search window.
+  Opens the latest |Cloogle| search window. You must have searched using
+  |:Cloogle| before using this command.
 
 -----------------------------------------------------------------------
 Compilers~
