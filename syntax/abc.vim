@@ -42,6 +42,7 @@ syntax keyword abcInstruction
 			\ set_entry update update_a update_b updatepop_a updatepop_b
 			\ addI decI gtI incI ltI subI mulI
 			\ and%
+			\ ccall stdcall
 
 highlight default link abcInstruction Statement
 highlight default link abcKeyword     Keyword

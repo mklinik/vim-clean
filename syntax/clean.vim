@@ -12,12 +12,16 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
+syn include @ABC <sfile>:p:h/abc.vim
+
 syn keyword cleanConditional    if
 syn keyword cleanStatement      let! let in with where case of
 syn keyword cleanClass          class instance special
-syn keyword cleanForeign        export foreign code
 syn keyword cleanGeneric        generic derive
 syn keyword cleanInfix          infixl infixr infix
+
+syn match   cleanForeign        "\<foreign export\( \(c\|std\)call\>\)\?"
+syn region  cleanABC            matchgroup=cleanForeign start="\<code\s*\(\<inline\s*\)\?{" end="}" contains=@ABC transparent
 
 syn match   cleanModule         "^\s*\(\(implementation\|definition\|system\)\s\+\)\?module\s\+" display
 syn keyword cleanImport         from import as qualified
