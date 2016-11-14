@@ -18,6 +18,11 @@ OPTIONS                                                   *clean-options*
 *g:clean_curlpath*
   Path of the curl executable (default: `curl`).
 
+*g:clean_autoheader*
+  If truthy, |:CleanSwitchModule| and related commands will automatically
+  insert a module header if the file switched to does not exist yet.
+  Set this option to `0` to disable this.
+
 =======================================================================
 FEATURES                                                 *clean-features*
 
@@ -46,7 +51,8 @@ definition (`*.dcl`) module.
 *:CleanSwitchModule* {editcmd}
 *CleanSwitchModule()*
   Call {editcmd} `<other>`, where `<other>` is the filename of the other
-  module.
+  module. If `<other>` does not exist yet, a module header will be added
+  automatically, unless |g:clean_autoheader| is set to `0`.
   See also |clean-mm|, |clean-mt|, |clean-ms|.
 
 `<LocalLeader>mm` *clean-mm*

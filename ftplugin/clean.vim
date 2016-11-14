@@ -25,13 +25,22 @@ setlocal suffixesadd=.icl,.dcl
 compiler cpm
 
 if !exists("g:clean_curlpath")
-    let g:clean_curlpath = "curl"
+  let g:clean_curlpath = "curl"
+endif
+
+if !exists("g:clean_autoheader")
+  let g:clean_autoheader = 1
 endif
 
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
     let basename = expand("%:r")
-    exec a:cmd . ' ' . basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
+    let filename = basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
+    let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
+    exec a:cmd . ' ' . filename
+    if g:clean_autoheader && !filereadable(filename)
+      exec 'normal i' . header . ' module ' . basename . "\<CR>\<CR>\<Esc>"
+    endif
   endfunction
 endif
 
