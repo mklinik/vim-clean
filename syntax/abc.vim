@@ -60,7 +60,7 @@ syntax keyword abcInstruction
 			\ repl_arg repl_args repl_args_b repl_r_args repl_r_args_a replace
 			\ select set_entry update update_a update_b updatepop_a updatepop_b
 			\ ccall stdcall centry
-			\ CtoAC CtoI ItoAC ItoC ItoR RtoAC RtoI
+			\ CtoAC CtoI ItoC ItoR RtoI
 			\ addI decI divI gtI incI ltI mulI negI remI subI
 			\ notB
 			\ eqD_b
