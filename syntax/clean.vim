@@ -21,7 +21,7 @@ syn keyword cleanGeneric        generic derive
 syn keyword cleanInfix          infixl infixr infix
 
 syn match   cleanForeign        "\<foreign export\( \(c\|std\)call\>\)\?"
-syn region  cleanABC            matchgroup=cleanForeign start="\<code\s*\(\<inline\s*\)\?{" end="}" contains=@ABC transparent
+syn region  cleanABC            matchgroup=cleanForeign start="\<code\(\s\|\n\)*\(\<inline\(\s\|\n\)*\)\?{" end="}" contains=@ABC transparent
 
 syn match   cleanModule         "^\s*\(\(implementation\|definition\|system\)\s\+\)\?module\s\+" display
 syn keyword cleanImport         from import as qualified
