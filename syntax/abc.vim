@@ -46,7 +46,7 @@ syntax keyword abcInstruction
 			\ build buildh build_r build_u buildAC buildB buildC buildI buildR
 			\ buildB_b buildC_b buildF_b buildI_b buildR_b
 			\ get_desc_arity get_node_arity
-			\ halt no_op setwait suspend release getWL
+			\ halt no_op setwait suspend release getWL exit_false
 			\ jmp jmp_ap jmp_eval jmp_eval_upd jmp_false jmp_true
 			\ jsr jsr_ap jsr_eval rtn
 			\ pop_a pop_b
