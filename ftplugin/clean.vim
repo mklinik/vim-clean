@@ -34,12 +34,13 @@ endif
 
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
-    let basename = substitute(expand("%:r"), '/', '.', 'g')
+    let basename = expand("%:r")
     let filename = basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
+    let modname = substitute(basename, '/', '.', 'g')
     let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
     exec a:cmd . ' ' . filename
     if g:clean_autoheader && !filereadable(filename)
-      exec 'normal i' . header . ' module ' . basename . "\<CR>\<CR>\<Esc>"
+      exec 'normal i' . header . ' module ' . modname . "\<CR>\<CR>\<Esc>"
     endif
   endfunction
 endif
