@@ -34,7 +34,7 @@ endif
 
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
-    let basename = expand("%:r")
+    let basename = substitute(expand("%:r"), '/', '.', 'g')
     let filename = basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
     let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
     exec a:cmd . ' ' . filename
