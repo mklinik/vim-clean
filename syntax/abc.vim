@@ -57,9 +57,10 @@ syntax keyword abcInstruction
 			\ push_a_r_args push_r_args push_r_args_a push_r_args_b
 			\ push_r_arg_t push_t_r_a push_t_r_args push_r_arg_D
 			\ pushA_a pushD pushD_a pushF_a pushR_a pushR pushC_a
+			\ pushLc pushL
 			\ repl_arg repl_args repl_args_b repl_r_args repl_r_args_a replace
 			\ select set_entry update update_a update_b updatepop_a updatepop_b
-			\ ccall stdcall centry
+			\ ccall stdcall centry instruction
 			\ CtoAC CtoI ItoC ItoR RtoI
 			\ addI decI divI gtI incI ltI mulI negI remI subI
 			\ notB
