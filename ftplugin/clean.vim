@@ -99,6 +99,11 @@ if !exists("*s:CloogleFormatResult")
       endfor
     elseif rtype == 'MacroResult'
       let extrastring = split(rextra.macro_representation, "\n")
+    elseif rtype == 'ModuleResult'
+      let extrastring = ["import " . rloc.modul]
+      if rextra.module_is_core
+        let extrastring[0] .= " // This is a core module"
+      endif
     endif
     return ['// ' . locstring . ':'] + extrastring
   endfunction
@@ -109,8 +114,9 @@ if !exists("*s:CloogleSearch")
     if executable('curl') == 0
         let g:clean#cloogle#window = ["Curl is not installed"]
     else
-        let curl = g:clean_curlpath . ' -A vim-clean -G -s --data-urlencode '
-        let data = shellescape('str=' . a:str)
+        let curl = g:clean_curlpath . ' -A vim-clean -G -s'
+        let data = ' --data-urlencode ' . shellescape('include_core=true')
+        let data .= ' --data-urlencode ' . shellescape('str=' . a:str)
         let url = shellescape('https://cloogle.org/api.php')
         let true = 1
         let false = 0
