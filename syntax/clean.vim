@@ -15,7 +15,7 @@ set cpo&vim
 syn include @ABC <sfile>:p:h/abc.vim
 
 syn keyword cleanConditional    if otherwise
-syn keyword cleanStatement      let! let in with where case of
+syn keyword cleanStatement      let! let in with where case of dynamic
 syn keyword cleanClass          class instance special
 syn keyword cleanGeneric        generic derive
 syn keyword cleanInfix          infixl infixr infix
