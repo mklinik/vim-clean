@@ -93,13 +93,18 @@ Cloogle~
 Compilers~
                                                         *clean-compilers*
 
+*clm*
+  Currently not supported. Support is planned.
+
+*clpm*
+  CLPM is an experimental Clean package manager which also includes a
+  `clm` wrapper. See https://github.com/camilstaps/clpm for more
+  information.
+
 *cpm*
   Currently, there is a `cpm.vim` compiler file for the Clean Project
   Manager `cpm`. The author advises against using `cpm` and recommends `clm`
   instead. Errorformats for `clm` are on the todo list (see |clm|).
-
-*clm*
-  Currently not supported. Support is planned.
 
 =======================================================================
 ABOUT                                                       *clean-about*
