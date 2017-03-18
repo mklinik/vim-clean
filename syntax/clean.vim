@@ -43,12 +43,15 @@ syn match   cleanLambda         "\\\s*\([a-zA-Z_]\w*`\?\s*\)\+\(\.\|->\|=\)" dis
 syn match   cleanTypeDef        "^\s*::\s*\u\w*`\?`" display contains=TOP
 syn match   cleanQualified      "'\w\+`\?'\." display
 
+syn region  cleanRecordDef      start="{"       end="}"   transparent fold contains=cleanRecordField
+syn match   cleanRecordField    "[{,&|]\@<=\_s*\a[a-zA-Z0-9_`]*\_s*\(::\|[=,}]\)\@=" display contained
+
 syn keyword cleanTodo           TODO FIXME XXX BUG NB contained containedin=cleanComment
 syn region  cleanComment        start="//"      end="$"   contains=@Spell oneline display
 syn region  cleanComment        start="/\*"     end="\*/" contains=cleanComment,@Spell
 syn region  cleanComment        start="^\s*/\*" end="\*/" contains=cleanComment,@Spell fold keepend extend
 
-syn region  cleanRecordDef      start="{"       end="}"   transparent fold
+syn match   cleanAllCaps        "\_s\@<=\u[A-Z0-9_]\+\>" display
 
 hi def link cleanConditional    Conditional
 hi def link cleanStatement      Statement
@@ -76,8 +79,12 @@ hi def link cleanLambda         Identifier
 hi def link cleanTypeDef        Type
 hi def link cleanQualified      Include
 
+hi def link cleanRecordField    Identifier
+
 hi def link cleanTodo           Todo
 hi def link cleanComment        Comment
+
+hi def link cleanAllCaps        Constant
 
 syntax sync ccomment cleanComment
 
