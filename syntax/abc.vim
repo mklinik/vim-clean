@@ -42,6 +42,7 @@ syntax keyword abcInstruction
 			\ is_record
 			\ create create_array create_array_
 			\ fill fillh fill_a fill_r fill1 fill2
+			\ fillB fillC fillF fillI fillR
 			\ fillB_b fillC_b fillF_b fillI_b fillR_b
 			\ build buildh build_r build_u buildAC buildB buildC buildI buildR
 			\ buildB_b buildC_b buildF_b buildI_b buildR_b
