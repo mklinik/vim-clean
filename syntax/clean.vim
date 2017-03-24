@@ -43,8 +43,8 @@ syn match   cleanLambda         "\\\s*\([a-zA-Z_]\w*`\?\s*\)\+\(\.\|->\|=\)" dis
 syn match   cleanTypeDef        "^\s*::\s*\u\w*`\?`" display contains=TOP
 syn match   cleanQualified      "'\w\+`\?'\." display
 
-syn region  cleanRecordDef      start="{"       end="}"   transparent fold contains=cleanRecordField,cleanRecordDef
-syn match   cleanRecordField    "[{,&|]\@<=\_s*\a[a-zA-Z0-9_`]*\_s*\(::\|[=,}]\)\@=" display contained
+syn region  cleanRecordDef      start="{"       end="}"   transparent fold containedin=cleanRecordDef
+syn match   cleanRecordField    "[{,&|]\@<=\_s*\a[a-zA-Z0-9_`]*\_s*\(::\|[=,}]\)\@=" display contained containedin=cleanRecordDef
 
 syn keyword cleanTodo           TODO FIXME XXX BUG NB contained containedin=cleanComment
 syn region  cleanComment        start="//"      end="$"   contains=@Spell oneline display
