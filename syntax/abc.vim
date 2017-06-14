@@ -41,7 +41,7 @@ syntax keyword abcInstruction
 			\ eqB eqB_a eqB_b eqI eqI_a eqI_b eqC_b
 			\ is_record
 			\ create create_array create_array_
-			\ fill fillh fill_a fill_r fill1 fill2
+			\ fill fillh fill_a fill_r fill1 fill1_r fill2 fill2_r
 			\ fillB fillC fillF fillI fillR
 			\ fillB_b fillC_b fillF_b fillI_b fillR_b
 			\ build buildh build_r build_u buildAC buildB buildC buildI buildR
@@ -51,7 +51,7 @@ syntax keyword abcInstruction
 			\ jmp jmp_ap jmp_eval jmp_eval_upd jmp_false jmp_true
 			\ jsr jsr_ap jsr_eval rtn
 			\ pop_a pop_b
-			\ push_a push_b pushB pushB_a pushC pushC_a pushI pushI_a
+			\ push_a push_b push_a_b pushB pushB_a pushC pushC_a pushI pushI_a
 			\ push_node push_node_u
 			\ push_ap_entry push_array push_arraysize
 			\ push_arg push_arg_b push_args push_args_b push_args_u
