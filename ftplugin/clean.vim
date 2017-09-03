@@ -15,6 +15,7 @@ set cpo&vim
 
 let b:undo_ftplugin = "setlocal com< cms< fo< sua<"
 
+setlocal iskeyword+=`
 setlocal comments=s1:/*,mb:*,ex:*/,://
 setlocal commentstring=//\ %s
 
