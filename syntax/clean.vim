@@ -1,9 +1,8 @@
 " Clean syntax file
-" Language:     Clean functional programing language
-" Author:       Tim Steenvoorden <t.steenvoorden@cs.ru.nl>
-" Original By:  Jurriën Stutterheim <j.stutterheim@cs.ru.nl>
+" Language:     Concurrent Clean
+" Author:       Camil Staps <info@camilstaps.nl>
+" Original By:  Jurriën Stutterheim <j.stutterheim@cs.ru.nl>; Tim Steenvoorden <t.steenvoorden@cs.ru.nl>
 " License:      This file is placed in the public domain.
-" Last Change:  7 Sep 2015
 
 if exists("b:current_syntax")
   finish
@@ -48,8 +47,6 @@ syn region  cleanComment        start="//"      end="$"   contains=@Spell onelin
 syn region  cleanComment        start="/\*"     end="\*/" contains=cleanComment,@Spell
 syn region  cleanComment        start="^\s*/\*" end="\*/" contains=cleanComment,@Spell fold keepend extend
 
-syn match   cleanAllCaps        "\_s\@<=\u[A-Z0-9_]\+\>" display
-
 hi def link cleanConditional    Conditional
 hi def link cleanStatement      Statement
 hi def link cleanClass          Keyword
@@ -78,8 +75,6 @@ hi def link cleanQualified      Include
 
 hi def link cleanTodo           Todo
 hi def link cleanComment        Comment
-
-hi def link cleanAllCaps        Constant
 
 syntax sync ccomment cleanComment
 

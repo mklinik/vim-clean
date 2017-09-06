@@ -1,3 +1,8 @@
+" ABC syntax file
+" Language:     ABC
+" Author:       Camil Staps <info@camilstaps.nl>
+" License:      This file is placed in the public domain.
+"
 if exists("b:current_syntax")
   finish
 endif

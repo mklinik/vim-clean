@@ -1,9 +1,8 @@
 " Vim plugin for Clean development
 " Language:     Clean functional programing language
-" Maintainer:   Jurriën Stutterheim <j.stutterheim@cs.ru.nl>
-" Contributor:  Tim Steenvoorden <t.steenvoorden@cs.ru.nl>
+" Maintainer:   Camil Staps <info@camilstaps.nl>
+" Contributor:  Jurriën Stutterheim <j.stutterheim@cs.ru.nl>; Tim Steenvoorden <t.steenvoorden@cs.ru.nl>
 " License:      This file is placed in the public domain.
-" Last Change:  3 Sep 2015
 
 if exists("b:did_ftplugin")
   finish
