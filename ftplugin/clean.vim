@@ -36,16 +36,18 @@ if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
     let basename = expand("%:r")
     let filename = basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
-    for tabNo in range(1, tabpagenr("$"))
-      for bufInTab in tabpagebuflist(tabNo)
-         if bufname(bufInTab) == filename
-           exec 'tabn ' . tabNo
-           return
-         endif
-      endfor
-    endfor
 
-    "Not open in a tab, thus we spawn a new one
+    " Check if the file is already open
+    let thebuff = bufnr(filename)
+    if thebuff != -1
+      let thewins = win_findbuf(thebuff)
+      if len(thewins) > 0
+        call win_gotoid(thewins[0])
+        return
+      endif
+    endif
+
+    " Not open in a window, open a new one
     exec a:cmd . ' ' . filename
 
     if g:clean_autoheader && !filereadable(filename)
