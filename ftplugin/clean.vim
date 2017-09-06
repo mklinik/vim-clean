@@ -36,10 +36,21 @@ if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
     let basename = expand("%:r")
     let filename = basename . (expand('%:e') == 'icl' ? '.dcl' : '.icl')
-    let modname = substitute(basename, '/', '.', 'g')
-    let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
+    for tabNo in range(1, tabpagenr("$"))
+      for bufInTab in tabpagebuflist(tabNo)
+         if bufname(bufInTab) == filename
+           exec 'tabn ' . tabNo
+           return
+         endif
+      endfor
+    endfor
+
+    "Not open in a tab, thus we spawn a new one
     exec a:cmd . ' ' . filename
+
     if g:clean_autoheader && !filereadable(filename)
+      let modname = substitute(basename, '/', '.', 'g')
+      let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
       exec 'normal i' . header . ' module ' . modname . "\<CR>\<CR>\<Esc>"
     endif
   endfunction
