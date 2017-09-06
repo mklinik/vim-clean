@@ -111,9 +111,6 @@ ABOUT                                                       *clean-about*
 
 Maintainer: Camil Staps <info@camilstaps.nl>
 
-This plugin was originally written by `norm2782`. The syntax was
-adapted by `timjs`. This is a fork of that syntax by `camilstaps`, with
-several highlighting improvements and additional features. Minor
-contributions have been made by `dopefishh`.
+See the readme file for more information.
 
 vim:tw=71:cc=72:ts=8:ai:ft=help:norl:

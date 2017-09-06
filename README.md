@@ -1,11 +1,20 @@
 # vim-clean
 [Clean][] plugin for Vim
 
-This plugin was originally written by [norm2782][norm2782-vim-clean]. The
-syntax was adapted by [timjs][timjs-syntax]. This is a fork of that syntax by
-[Camil Staps][camilstaps], with several highlighting improvements and
-additional features. Minor contributions have been made by
-[Mart Lubbers][dopefishh].
+### Maintainers
+
+- [Camil Staps][camilstaps]
+- [Mart Lubbers][dopefishh]
+
+This plugin is based on previous work by:
+
+- [norm2782][norm2782-vim-clean] (original author)
+- [timjs][timjs-syntax] (new syntax highlighting)
+
+The present authors have made several highlighting improvements and added many
+features (see below).
+
+---
 
 ### Features
 
