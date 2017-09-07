@@ -52,7 +52,7 @@ if !exists("*s:CleanSwitchModule")
 
     if g:clean_autoheader && !filereadable(filename)
       let modname = substitute(basename, '/', '.', 'g')
-      let header = expand('%:e') == 'icl' ? 'definition' : 'implementation'
+      let header = expand('%:e') == 'dcl' ? 'definition' : 'implementation'
       exec 'normal i' . header . ' module ' . modname . "\<CR>\<CR>\<Esc>"
     endif
   endfunction
