@@ -48,10 +48,17 @@ if !exists("*s:CleanSwitchModule")
     endif
 
     " Not open in a window, open a new one
+    let oldbuf = bufname('%')
     exec a:cmd . ' ' . filename
 
     if g:clean_autoheader && !filereadable(filename)
-      let modname = substitute(basename, '/', '.', 'g')
+      let modrgx = '\(implementation\|definition\)\?\s*module\s\+'
+      let line = matchstr(getbufline(oldbuf, 1, '$'), modrgx)
+      if line != ''
+        let modname = substitute(line, '\(implementation\|definition\|module\|\s\+\)', '', 'g')
+      else
+        let modname = substitute(basename, '/', '.', 'g')
+      endif
       let header = expand('%:e') == 'dcl' ? 'definition' : 'implementation'
       exec 'normal i' . header . ' module ' . modname . "\<CR>\<CR>\<Esc>"
     endif
