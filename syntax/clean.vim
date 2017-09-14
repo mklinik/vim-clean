@@ -36,6 +36,7 @@ syn keyword cleanBool           True False
 
 syn match   cleanOperator       "[-~@#$%^?!+*<>\/|&=:.]\+" display
 syn match   cleanDelimiter      "(\|)\|\[\(:\|#\|!\)\?\|\]\|{\(:\|#\|!\||\)\?\|\(:\||\)\?}\|,\|;" display
+syn region  cleanKind           matchgroup=cleanKindOuter start="{|" end="|}" oneline contains=cleanKindOuter keepend
 
 syn match   cleanFunction       "^\s*\((\(\a\w*`\?\|[-~@#$%^?!+*<>\/|&=:.]\+\))\|\a\%\(\w\|`\)*\)\(\_s\+infix[lr]\?\s\+\d\)\?\_s*::\_s*" display contains=TOP
 syn match   cleanLambda         "\\\s*\([a-zA-Z_]\w*`\?\s*\)\+\(\.\|->\|=\)" display contains=TOP
@@ -64,6 +65,8 @@ hi def link cleanReal           Float
 hi def link cleanString         String
 hi def link cleanSpecialChar    String
 hi def link cleanBool           Boolean
+hi def link cleanKind           Type
+hi def link cleanKindOuter      Delimiter
 
 hi def link cleanOperator       Operator
 hi def link cleanDelimiter      Delimiter
