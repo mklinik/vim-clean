@@ -40,7 +40,7 @@ syn region  cleanKind           matchgroup=cleanKindOuter start="{|" end="|}" on
 
 syn match   cleanFunction       "^\s*\((\(\a\w*`\?\|[-~@#$%^?!+*<>\/|&=:.]\+\))\|\a\%\(\w\|`\)*\)\(\_s\+infix[lr]\?\s\+\d\)\?\_s*::\_s*" display contains=TOP
 syn match   cleanLambda         "\\\s*\([a-zA-Z_]\w*`\?\s*\)\+\(\.\|->\|=\)" display contains=TOP
-syn match   cleanTypeDef        "^\s*::\s*\u\w*`*" display contains=TOP
+syn match   cleanTypeDef        "^\s*::\s*\*\?\u\w*`*" display contains=TOP
 syn match   cleanQualified      "'\w\+`\?'\." display
 
 syn keyword cleanTodo           TODO FIXME XXX BUG NB contained containedin=cleanComment
