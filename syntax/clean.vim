@@ -18,12 +18,15 @@ syn keyword cleanStatement      let! let in with where case of dynamic
 syn keyword cleanClass          class instance special
 syn keyword cleanGeneric        generic derive
 syn keyword cleanInfix          infixl infixr infix
+if g:clean_highlight_o
+	syn keyword cleanO          o
+endif
 
 syn match   cleanForeign        "\<foreign export\( \(c\|std\)call\>\)\?"
 syn region  cleanABC            matchgroup=cleanForeign start="\<code\(\s\|\n\)*\(\<inline\(\s\|\n\)*\)\?{" end="}" contains=@ABC transparent
 
 syn match   cleanModule         "^\s*\(\(implementation\|definition\|system\)\s\+\)\?module\s\+" display
-syn match   cleanImportMod      "\(\<from\>.*\)\?\<import\>\s*\(qualified\)\?.*$" display contains=cleanImportKeyword,cleanClass,cleanGeneric,cleanDelimiter,cleanOperator
+syn match   cleanImportMod      "\(\<from\>.*\)\?\<import\>\s*\(qualified\)\?.*$" display contains=cleanImportKeyword,cleanClass,cleanGeneric,cleanDelimiter,cleanOperator,cleanO
 syn match   cleanImportKeyword  "\<\(as\|from\|import\|qualified\)\>" contained containedin=cleanImportMod
 
 syn match   cleanSpecialChar    contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&abfnrtv]\)"
@@ -56,6 +59,7 @@ hi def link cleanClass          Keyword
 hi def link cleanForeign        Keyword
 hi def link cleanGeneric        Keyword
 hi def link cleanInfix          PreProc
+hi def link cleanO              Operator
 
 hi def link cleanModule         Include
 hi def link cleanImportKeyword  Include

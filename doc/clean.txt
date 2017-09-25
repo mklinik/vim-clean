@@ -23,6 +23,11 @@ OPTIONS                                                   *clean-options*
   insert a module header if the file switched to does not exist yet.
   Set this option to `0` to disable this.
 
+*g:clean_highlight_o*
+  If truthy, the `o` symbol will be highlighted as an operator (as
+  StdFunc defines it as function composition). Set this option to `0` to
+  disable this.
+
 =======================================================================
 FEATURES                                                 *clean-features*
 

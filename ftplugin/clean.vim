@@ -32,6 +32,10 @@ if !exists("g:clean_autoheader")
   let g:clean_autoheader = 1
 endif
 
+if !exists("g:clean_highlight_o")
+  let g:clean_highlight_o = 1
+endif
+
 if !exists("*s:CleanSwitchModule")
   function s:CleanSwitchModule(cmd)
     let basename = expand("%:r")
