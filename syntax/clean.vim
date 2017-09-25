@@ -23,7 +23,8 @@ syn match   cleanForeign        "\<foreign export\( \(c\|std\)call\>\)\?"
 syn region  cleanABC            matchgroup=cleanForeign start="\<code\(\s\|\n\)*\(\<inline\(\s\|\n\)*\)\?{" end="}" contains=@ABC transparent
 
 syn match   cleanModule         "^\s*\(\(implementation\|definition\|system\)\s\+\)\?module\s\+" display
-syn keyword cleanImport         from import as qualified
+syn match   cleanImportMod      "\(\<from\>.*\)\?\<import\>\s*\(qualified\)\?.*$" display contains=cleanImportKeyword,cleanClass,cleanGeneric,cleanDelimiter,cleanOperator
+syn match   cleanImportKeyword  "\<\(as\|from\|import\|qualified\)\>" contained containedin=cleanImportMod
 
 syn match   cleanSpecialChar    contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&abfnrtv]\)"
 syn match   cleanChar           "'\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&abfnrtv]\)'" display
@@ -57,7 +58,7 @@ hi def link cleanGeneric        Keyword
 hi def link cleanInfix          PreProc
 
 hi def link cleanModule         Include
-hi def link cleanImport         Include
+hi def link cleanImportKeyword  Include
 
 hi def link cleanChar           Character
 hi def link cleanCharList       Character
