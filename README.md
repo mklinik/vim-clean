@@ -19,6 +19,7 @@ features (see below).
 ### Features
 
 * Syntax highlighting for Clean and ABC code
+* Folding rules for Clean
 * Switching between definition and implementation module
 * Compiler errorformats
 * [Cloogle][] integration (note that this requires [curl][])

@@ -15,13 +15,17 @@ CONTENTS                                                 *clean-contents*
 =======================================================================
 OPTIONS                                                   *clean-options*
 
-*g:clean_curlpath*
-  Path of the curl executable (default: `curl`).
-
 *g:clean_autoheader*
   If truthy, |:CleanSwitchModule| and related commands will automatically
   insert a module header if the file switched to does not exist yet.
   Set this option to `0` to disable this.
+
+*g:clean_curlpath*
+  Path of the curl executable (default: `curl`).
+
+*g:clean_folding*
+  If truthy, special folding rules are loaded to fold `where` and `with`
+  clauses.
 
 *g:clean_highlight_o*
   If truthy, the `o` symbol will be highlighted as an operator (as
