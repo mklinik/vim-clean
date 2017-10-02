@@ -87,6 +87,7 @@ if g:clean_folding
   setlocal foldexpr=CleanFoldLevel()
   setlocal foldtext=CleanFoldText()
   setlocal foldminlines=2
+  setlocal foldignore=
   setlocal foldmethod=expr
 endif
 
