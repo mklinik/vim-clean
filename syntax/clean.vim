@@ -46,7 +46,7 @@ syn match   cleanGenericOf      "\<of\>" display contained containedin=cleanGene
 syn match   cleanFunction       "^\s*\((\(\a\w*`\?\|[-~@#$%^?!+*<>\/|&=:.]\+\))\|\a\%\(\w\|`\)*\)\(\_s\+infix[lr]\?\s\+\d\)\?\_s*::\_s*" display contains=TOP
 syn match   cleanLambda         "\\\s*\([a-zA-Z_]\w*`\?\s*\)\+\(\.\|->\|=\)" display contains=TOP
 syn match   cleanTypeDef        "^\s*::\s*\*\?\u\w*`*\s*\($\|\([a-z0-9_` \t]*\(=\|:==\|(:==\)\)\)\@=" display contains=TOP
-syn match   cleanQualified      "'\w\+`\?'\." display
+syn match   cleanQualified      "'\w\+`\?'\.[^.]\@=" display
 
 syn keyword cleanTodo           TODO FIXME XXX BUG NB contained containedin=cleanComment
 syn region  cleanComment        start="//"      end="$"   contains=@Spell oneline display
