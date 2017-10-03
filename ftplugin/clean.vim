@@ -40,6 +40,10 @@ if !exists("g:clean_highlight_o")
   let g:clean_highlight_o = 1
 endif
 
+if !exists("g:clean_load_cloogle_tags")
+  let g:clean_load_cloogle_tags = 0
+endif
+
 if g:clean_folding
   if !exists("*CleanFoldLevel")
     function CleanFoldLevel()
@@ -250,15 +254,20 @@ if !exists("*s:CloogleComplete")
   endfunction
 endif
 
+if g:clean_load_cloogle_tags
+  let tagfile = fnamemodify(resolve(expand('<sfile>:p')), ':h:h') . '/tags/tags'
+  exec "setlocal tags+=" . shellescape(tagfile)
+  if !exists("s:clean_load_cloogle_tags_warning") && !filereadable(tagfile)
+    let s:clean_load_cloogle_tags_warning = 1
+    exec confirm("Warning: g:clean_load_cloogle_tags is truthy, but " . tagfile .\
+        " does not exist.\nPlease download https://cloogle.org/tags to that location.")
+  endif
+endif
+
 command! -complete=customlist,<SID>CloogleComplete -nargs=+ Cloogle :call <SID>CloogleSearch(<q-args>)
 command! CloogleWindow :call <SID>CloogleWindow()
 
 map <buffer> <LocalLeader>c :call <SID>CloogleSearch(expand('<cword>'))<CR>
-
-let b:all_tag_files = split(globpath('./Clean\ System\ Files/ctags', '*_tags'), '\n')
-for b:tag_file_name in b:all_tag_files
-  exec "set tags+=" . substitute(b:tag_file_name, "Clean System Files", "Clean\\\\\\\\\\\\\ System\\\\\\\\\\\\ Files", "") . ";"
-endfor
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
