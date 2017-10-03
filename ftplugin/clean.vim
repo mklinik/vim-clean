@@ -256,7 +256,7 @@ endif
 
 if g:clean_load_cloogle_tags
   let tagfile = fnamemodify(resolve(expand('<sfile>:p')), ':h:h') . '/tags/tags'
-  exec "setlocal tags+=" . shellescape(tagfile)
+  exec "setlocal tags+=" . tagfile
   if !exists("s:clean_load_cloogle_tags_warning") && !filereadable(tagfile)
     let s:clean_load_cloogle_tags_warning = 1
     exec confirm("Warning: g:clean_load_cloogle_tags is truthy, but " . tagfile .\
