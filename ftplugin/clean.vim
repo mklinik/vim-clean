@@ -130,6 +130,103 @@ map <buffer> <LocalLeader>mt :call <SID>CleanSwitchModule('tabedit')<CR>
 map <buffer> <LocalLeader>ms :call <SID>CleanSwitchModule('split')<CR>
 map <buffer> <LocalLeader>mv :call <SID>CleanSwitchModule('vsplit')<CR>
 
+if !exists("*s:CleanAddImport")
+  " Add an import at an appropriate place in the file. a:search is the thing
+  " to sort on (the module name); a:import the actual import string. The
+  " import string is added below the last 'import ...' line that comes
+  " alphabetically before the import string.
+  function! s:CleanAddImport(search, import)
+    let lastline = 2
+    let lineno = 0
+    for line in getline('1', '$')
+      let lineno += 1
+      let ip = matchlist(line, '^import \(\S\+\)')
+      if len(ip) > 0
+        if ip[1] < a:search
+          let lastline = lineno
+        elseif ip[1] == a:search
+          echohl WarningMsg | echomsg a:search . ' is already imported.' | echohl None
+          return
+        else
+          call append(lastline, a:import)
+          call cursor(lastline+1, 1)
+          return
+        endif
+      endif
+    endfor
+    call append(lastline, a:import)
+    call cursor(lastline+1, 1)
+  endfun
+endif
+
+if !exists("*s:CleanTagSort")
+  function! s:CleanTagSort(taga, tagb)
+    if a:taga.module < a:tagb.module
+      return -1
+    elseif a:taga.module == a:tagb.module
+      return 0
+    else
+      return 1
+    endif
+  endfun
+endif
+
+if !exists("*s:CleanAutoImport")
+  " Auto-import 'str' by looking at the tag list. When selective is 1, use a
+  " 'from ... import ...' import.
+  function! s:CleanAutoImport(str, selective)
+    let results = filter(taglist('^\V' . a:str . '\$'), 'has_key(v:val, "module")')
+
+    if len(results) == 0
+      echohl WarningMsg | echomsg "No tag found for '" . a:str. "' (did you use cloogletags -c?)." | echohl None
+      return
+    elseif len(results) == 1
+      let result = results[0]
+    else
+      call sort(results, 's:CleanTagSort')
+
+      let resulttexts = ['Select module to import:']
+      let i = 0
+      for result in results
+        let i += 1
+        call add(resulttexts, i . ': ' . result.module)
+      endfor
+
+      let choice = inputlist(resulttexts)
+      if choice <= 0
+        return
+      endif
+      let result = results[choice-1]
+    endif
+
+    if a:selective
+      let import = 'from ' . result.module . ' import '
+      if result.thing == 'function' || result.thing == 'macro'
+        let import .= result.name
+      elseif result.thing == 'generic'
+        let import .= 'generic ' . result.name
+      elseif result.thing == 'constructor'
+        let import .= ':: ' . result.type . '(' . result.name . ')'
+      elseif result.thing == 'recfield'
+        let import .= ':: ' . result.type . '{' . result.name . '}'
+      elseif result.thing == 'type'
+        let import .= ':: ' . result.name
+      elseif result.thing == 'class'
+        let import .= 'class ' . result.name
+      elseif result.thing == 'classmem'
+        let import .= 'class ' . result.class . '(' . result.name . ')'
+      endif
+    else
+      let import = 'import ' . result.module
+    endif
+
+    call s:CleanAddImport(result.module, import)
+  endfun
+endif
+
+map <buffer> <LocalLeader>ai :call <SID>CleanAutoImport(expand('<cword>'), 0)<CR>
+map <buffer> <LocalLeader>aI :call <SID>CleanAutoImport(expand('<cword>'), 1)<CR>
+
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()
     if !exists('g:clean#cloogle#window')

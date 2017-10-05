@@ -21,12 +21,13 @@ features (see below).
 * Syntax highlighting for Clean and ABC code
 * Folding rules for Clean
 * Switching between definition and implementation module
+* Automatic imports based on tagfiles (see below)
 * Compiler errorformats
 * [Cloogle][] integration (note that this requires [curl][])
 * Access to the plugin manual via `:h clean`. Make sure to run `:helptags` at
   least once to update the helpfiles.
 
-### Tip
+### Tip: tagfiles
 
 Use [clean-cloogle/cloogle-tags][tags] to build a tagsfile (`:h tags`) on
 `/opt/clean/lib`, and add `setlocal tags+=/opt/clean/lib/tags` to your

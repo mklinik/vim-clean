@@ -52,6 +52,28 @@ Vim does not have built-in support for ABC code syntax highlighting,
 but |vim-clean| provides it.
 
 -----------------------------------------------------------------------
+Automatic imports~
+
+With cloogle-tags (https://github.com/clean-cloogle/cloogle-tags),
+tagfiles can be generated for Clean source code. Run it with `-c` such
+that it includes extra information about the kind of entries. Then, use
+the normal vim bindings for tag search, or the below tools to
+automatically import the module corresponding to a word under the
+cursor.
+
+The new import is placed after the last existing import that comes
+before it when sorting alphabetically on module name.
+
+`<LocalLeader>ai` *clean-ai*
+  Add an import for the module that the word under the cursor is in.
+  When multiple modules contain the entry, let the user choose.
+
+`<LocalLeader>aI` *clean-aI*
+  Add a selective import for the module that the word under the cursor
+  is in; only importing that exact thing. When multiple modules contain
+  the entry, let the user choose.
+
+-----------------------------------------------------------------------
 Module switching~
                                                   *clean-modules* *icl* *dcl*
 |vim-clean| lets you easily switch between implementation (`*.icl`) and
