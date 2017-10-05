@@ -32,11 +32,6 @@ OPTIONS                                                   *clean-options*
   StdFunc defines it as function composition). Set this option to `0` to
   disable this.
 
-*g:clean_load_cloogle_tags*
-  If truthy, `<plugin>/tags/tags` will be added to `tags` for Clean files.
-  You can download https://cloogle.org/tags to that location, and
-  receive a warning if the file does not exist.
-
 =======================================================================
 FEATURES                                                 *clean-features*
 
