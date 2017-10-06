@@ -14,7 +14,8 @@ set cpo&vim
 
 let b:undo_ftplugin = "setlocal com< cms< fo< sua<"
 
-setlocal iskeyword+=`
+" !#$%&*+,-./:<=>?@^_`|~
+setlocal iskeyword+=33,35-38,42-47,58,60-64,94-96,124,126
 setlocal comments=s1:/*,mb:*,ex:*/,://
 setlocal commentstring=//\ %s
 
@@ -175,10 +176,33 @@ if !exists("*s:CleanAutoImport")
   " Auto-import 'str' by looking at the tag list. When selective is 1, use a
   " 'from ... import ...' import.
   function! s:CleanAutoImport(str, selective)
-    let results = filter(taglist('^\V' . a:str . '\$'), 'has_key(v:val, "module")')
+    " Split record field names
+    let str = a:str
+    if a:str =~ '\([a-zA-Z_`]\+\.\)\+[a-zA-Z_`]\+'
+      let col = getpos('.')[2]
+      let line = getline('.')
+      if !(line =~ '^import\>' || line =~ '^from\>.*\<import\>')
+        let parts = split(a:str, '\.')
+        let i = col
+        echo parts
+        while strpart(line, i, len(a:str)) != a:str
+          let i -= 1
+        endwhile
+        for part in parts
+          let i += len(part)
+          if i > col
+            let str = part
+            echo [col, i, part]
+            break
+          endif
+        endfor
+      endif
+    endif
+
+    let results = filter(taglist('^\V' . str . '\$'), 'has_key(v:val, "module")')
 
     if len(results) == 0
-      echohl WarningMsg | echomsg "No tag found for '" . a:str. "' (did you use cloogletags -c?)." | echohl None
+      echohl WarningMsg | echomsg "No tag found for '" . str. "' (did you use cloogletags -c?)." | echohl None
       return
     elseif len(results) == 1
       let result = results[0]
