@@ -224,8 +224,8 @@ if !exists("*s:CleanAutoImport")
   endfun
 endif
 
-map <buffer> <LocalLeader>ai :call <SID>CleanAutoImport(expand('<cWORD>'), 0)<CR>
-map <buffer> <LocalLeader>aI :call <SID>CleanAutoImport(expand('<cWORD>'), 1)<CR>
+map <buffer> <LocalLeader>ai :call <SID>CleanAutoImport(expand('<cword>'), 0)<CR>
+map <buffer> <LocalLeader>aI :call <SID>CleanAutoImport(expand('<cword>'), 1)<CR>
 
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()
