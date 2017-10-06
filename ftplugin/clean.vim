@@ -287,7 +287,7 @@ endif
 
 if !exists("*s:CloogleSearch")
   function! s:CloogleSearch(str)
-    if executable('curl') == 0
+    if executable(g:clean_curlpath) == 0
         let g:clean#cloogle#window = ["Curl is not installed"]
     else
         let curl = g:clean_curlpath . ' -A vim-clean -G -s'
