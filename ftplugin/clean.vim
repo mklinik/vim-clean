@@ -14,8 +14,8 @@ set cpo&vim
 
 let b:undo_ftplugin = "setlocal com< cms< fo< sua<"
 
-" !#$%&*+,-./:<=>?@^_`|~
-setlocal iskeyword+=33,35-38,42-47,58,60-64,94-96,124,126
+" !#$%&*+-./:<=>?@\^_`|~
+setlocal iskeyword+=33,35-38,42,43,45-47,58,60-64,92,94-96,124,126
 setlocal comments=s1:/*,mb:*,ex:*/,://
 setlocal commentstring=//\ %s
 
