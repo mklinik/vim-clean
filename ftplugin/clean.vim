@@ -224,7 +224,7 @@ if !exists("*s:CleanAutoImport")
 
     if a:selective
       let import = 'from ' . result.module . ' import '
-      if result.thing == 'function' || result.thing == 'macro'
+      if result.thing == 'function' || result.thing == 'rule'
         let import .= result.name
       elseif result.thing == 'generic'
         let import .= 'generic ' . result.name
@@ -238,6 +238,8 @@ if !exists("*s:CleanAutoImport")
         let import .= 'class ' . result.name
       elseif result.thing == 'classmem'
         let import .= 'class ' . result.class . '(' . result.name . ')'
+      else
+        echoerr "Unknown tag type '" . result.thing . "'"
       endif
     else
       let import = 'import ' . result.module
