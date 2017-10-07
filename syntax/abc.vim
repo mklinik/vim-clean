@@ -14,7 +14,7 @@ syntax match   abcQuietLabel  /\v\h[a-zA-Z0-9_\.;<>\\`=+|&~^\/*%!:-]*/
 syntax match   abcInteger     "\v(-|<)\d+>"
 syntax match   abcReal        "\v<\d+\.\d+>"
 
-syntax keyword abcKeyword     .code .comp .depend .endinfo .implib .impmod .module .record
+syntax keyword abcKeyword     .code .comp .depend .endinfo .implib .impmod .impobj .module .record
 syntax match   abcLabel       "\v^[a-zA-Z0-9_\.;<>\\`=+|&~^\/*%!:-]+\s*$"
 syntax region  abcNote        start=/\v\.(a|d|o|n|nu|end|keep|pb|pd|pe|pld|pn|inline|string)( |$)/ end=/\n/ oneline
 syntax region  abcComment     start=/\v(^|\s)\|/ end=/\n/ oneline
