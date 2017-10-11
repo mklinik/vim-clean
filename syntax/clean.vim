@@ -11,6 +11,10 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
+if !exists("g:clean_highlight_o")
+  let g:clean_highlight_o = 1
+endif
+
 syn include @ABC <sfile>:p:h/abc.vim
 
 syn keyword cleanConditional    if otherwise

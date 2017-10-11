@@ -36,10 +36,6 @@ if !exists("g:clean_folding")
   let g:clean_folding = 1
 endif
 
-if !exists("g:clean_highlight_o")
-  let g:clean_highlight_o = 1
-endif
-
 if g:clean_folding
   if !exists("*CleanFoldLevel")
     function CleanFoldLevel()
