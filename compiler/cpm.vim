@@ -22,11 +22,11 @@ setlocal isfname-=,
 
 let &l:errorformat  = '%E%trror [%f\,%l]: %m'
 let &l:errorformat .= ',%E%trror [%f\,%l\,]: %m'
-let &l:errorformat .= ',%E%trror [%f\,%l\,%s]: %m'
-let &l:errorformat .= ',%EType %trror [%f\,%l\,%s]:%m'
-let &l:errorformat .= ',%EOverloading %trror [%f\,%l\,%s]:%m'
-let &l:errorformat .= ',%EUniqueness %trror [%f\,%l\,%s]:%m'
-let &l:errorformat .= ',%EParse %trror [%f\,%l;%c\,%s]: %m'
+let &l:errorformat .= ',%E%trror [%f\,%l\,%*[^]]]: %m'
+let &l:errorformat .= ',%EType %trror [%f\,%l\,%*[^]]]:%m'
+let &l:errorformat .= ',%EOverloading %trror [%f\,%l\,%*[^]]]:%m'
+let &l:errorformat .= ',%EUniqueness %trror [%f\,%l\,%*[^]]]:%m'
+let &l:errorformat .= ',%EParse %trror [%f\,%l;%c\,%*[^]]]: %m'
 
 " These first two warnings include 'no inline code' and 'not all derived
 " strictness exported', which are generally not very helpful
