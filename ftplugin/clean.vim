@@ -167,44 +167,21 @@ if !exists("*s:CleanTagSort")
   endfun
 endif
 
-if !exists("*s:CleanAutoImport")
-  " Auto-import 'str' by looking at the tag list. When selective is 1, use a
-  " 'from ... import ...' import.
-  function! s:CleanAutoImport(str, selective)
-    " Split record field names
-    let str = a:str
-    if a:str =~ '\([a-zA-Z_`]\+\.\)\+[a-zA-Z_`]\+'
-      let col = getpos('.')[2]
-      let line = getline('.')
-      if !(line =~ '^import\>' || line =~ '^from\>.*\<import\>')
-        let parts = split(a:str, '\.')
-        let i = col
-        echo parts
-        while strpart(line, i, len(a:str)) != a:str
-          let i -= 1
-        endwhile
-        for part in parts
-          let i += len(part)
-          if i > col
-            let str = part
-            echo [col, i, part]
-            break
-          endif
-        endfor
-      endif
-    endif
-
-    let results = filter(taglist('^\V' . str . '\$'), 'has_key(v:val, "module")')
+if !exists("*s:CleanChooseModuleForTag")
+  function! s:CleanChooseModuleForTag(msg, tag)
+    let results = filter(taglist('^\V' . a:tag . '\$'), 'has_key(v:val, "module")')
 
     if len(results) == 0
-      echohl WarningMsg | echomsg "No tag found for '" . str. "' (did you use cloogletags -c?)." | echohl None
-      return
+      echohl WarningMsg
+      echomsg "No tag found for '" . a:tag. "' (did you use cloogletags -c?)."
+      echohl None
+      return {}
     elseif len(results) == 1
-      let result = results[0]
+      return results[0]
     else
       call sort(results, 's:CleanTagSort')
 
-      let resulttexts = ['Select module to import:']
+      let resulttexts = [a:msg]
       let i = 0
       for result in results
         let i += 1
@@ -213,9 +190,21 @@ if !exists("*s:CleanAutoImport")
 
       let choice = inputlist(resulttexts)
       if choice <= 0
-        return
+        return {}
       endif
-      let result = results[choice-1]
+
+      return results[choice-1]
+    endif
+  endfun
+endif
+
+if !exists("*s:CleanAutoImport")
+  " Auto-import 'str' by looking at the tag list. When selective is 1, use a
+  " 'from ... import ...' import.
+  function! s:CleanAutoImport(str, selective)
+    let result = s:CleanChooseModuleForTag('Select module to import:', a:str)
+    if result == {}
+      return
     endif
 
     if a:selective
@@ -247,6 +236,36 @@ endif
 
 map <buffer> <LocalLeader>ai :call <SID>CleanAutoImport(expand('<cword>'), 0)<CR>
 map <buffer> <LocalLeader>aI :call <SID>CleanAutoImport(expand('<cword>'), 1)<CR>
+
+if !exists("*s:CleanJumpToDef")
+  function! s:CleanJumpToDef(str, cmd, implementation)
+    let result = s:CleanChooseModuleForTag('Select module to load:', a:str)
+    if result == {}
+      return
+    endif
+
+    if a:implementation
+      if has_key(result, 'icl')
+        exec a:cmd . ' ' . substitute(result.filename, '\.dcl$', '.icl', '')
+        exec result.icl
+        return
+      else
+        call confirm('No implementation for this element; jumping to dcl instead...')
+      endif
+    endif
+    exec a:cmd . ' ' . result.filename
+    exec result.cmd
+  endfun
+endif
+
+map <buffer> <LocalLeader>dd :call <SID>CleanJumpToDef(expand('<cword>'), 'edit',    0)<CR>
+map <buffer> <LocalLeader>dt :call <SID>CleanJumpToDef(expand('<cword>'), 'tabedit', 0)<CR>
+map <buffer> <LocalLeader>ds :call <SID>CleanJumpToDef(expand('<cword>'), 'split',   0)<CR>
+map <buffer> <LocalLeader>dv :call <SID>CleanJumpToDef(expand('<cword>'), 'vsplit',  0)<CR>
+map <buffer> <LocalLeader>ii :call <SID>CleanJumpToDef(expand('<cword>'), 'edit',    1)<CR>
+map <buffer> <LocalLeader>it :call <SID>CleanJumpToDef(expand('<cword>'), 'tabedit', 1)<CR>
+map <buffer> <LocalLeader>is :call <SID>CleanJumpToDef(expand('<cword>'), 'split',   1)<CR>
+map <buffer> <LocalLeader>iv :call <SID>CleanJumpToDef(expand('<cword>'), 'vsplit',  1)<CR>
 
 if !exists("*s:CloogleWindow")
   function! s:CloogleWindow()

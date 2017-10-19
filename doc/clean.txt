@@ -7,6 +7,8 @@ CONTENTS                                                 *clean-contents*
   Features .................. |clean-features|
     Filetype detection ...... |clean-filetypes|
     Syntax highlighting ..... |clean-highlighting|
+    Automatic imports ....... |clean-automatic-imports|
+    Jumping to definitions .. |clean-jumping-to-definitions|
     Module switching ........ |clean-modules|
     Cloogle ................. |clean-cloogle|
     Compilers ............... |clean-compilers|
@@ -53,6 +55,7 @@ but |vim-clean| provides it.
 
 -----------------------------------------------------------------------
 Automatic imports~
+                                                *clean-automatic-imports*
 
 With cloogle-tags (https://github.com/clean-cloogle/cloogle-tags),
 tagfiles can be generated for Clean source code. Run it with `-c` such
@@ -72,6 +75,31 @@ before it when sorting alphabetically on module name.
   Add a selective import for the module that the word under the cursor
   is in; only importing that exact thing. When multiple modules contain
   the entry, let the user choose.
+
+-----------------------------------------------------------------------
+Jumping to definitions~
+                                           *clean-jumping-to-definitions*
+When cloogle-tags is set up (see under |clean-automatic-imports|), you
+can use the following functions to jump to definitions of things under
+the cursor:
+
+`<LocalLeader>im` *clean-ii*
+  Open the implementation in the current window.
+`<LocalLeader>im` *clean-it*
+  Open the implementation in a new tab.
+`<LocalLeader>im` *clean-is*
+  Open the implementation in a new split.
+`<LocalLeader>im` *clean-iv*
+  Open the implementation in a new vertical.
+
+`<LocalLeader>im` *clean-dd*
+  Open the definition in the current window.
+`<LocalLeader>im` *clean-dt*
+  Open the definition in a new tab.
+`<LocalLeader>im` *clean-ds*
+  Open the definition in a new split.
+`<LocalLeader>im` *clean-dv*
+  Open the definition in a new vertical.
 
 -----------------------------------------------------------------------
 Module switching~

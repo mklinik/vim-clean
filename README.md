@@ -22,6 +22,7 @@ features (see below).
 * Folding rules for Clean
 * Switching between definition and implementation module
 * Automatic imports based on tagfiles (see below)
+* Jumping to definition and implementation based on tagfiles (see below)
 * Compiler errorformats
 * [Cloogle][] integration (note that this requires [curl][])
 * Access to the plugin manual via `:h clean`. Make sure to run `:helptags` at
