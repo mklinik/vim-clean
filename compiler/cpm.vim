@@ -20,7 +20,7 @@ endif
 
 setlocal isfname-=,
 
-let &l:errorformat  = '%E%trror [%f\,%l]: %m'
+let &l:errorformat  =  '%E%trror [%f\,%l]: %m'
 let &l:errorformat .= ',%E%trror [%f\,%l\,]: %m'
 let &l:errorformat .= ',%E%trror [%f\,%l\,%*[^]]]: %m'
 let &l:errorformat .= ',%EType %trror [%f\,%l\,%*[^]]]:%m'
