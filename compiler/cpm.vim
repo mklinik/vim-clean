@@ -23,6 +23,8 @@ setlocal isfname-=,
 let &l:errorformat  =  '%E%trror [%f\,%l]: %m'
 let &l:errorformat .= ',%E%trror [%f\,%l\,]: %m'
 let &l:errorformat .= ',%E%trror [%f\,%l\,%*[^]]]: %m'
+" arity errors don't have a space after the colon
+let &l:errorformat .= ',%E%trror [%f\,%l\,%*[^]]]:%m'
 let &l:errorformat .= ',%EType %trror [%f\,%l\,%*[^]]]:%m'
 let &l:errorformat .= ',%EOverloading %trror [%f\,%l\,%*[^]]]:%m'
 let &l:errorformat .= ',%EUniqueness %trror [%f\,%l\,%*[^]]]:%m'
