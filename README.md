@@ -6,13 +6,11 @@
 - [Camil Staps][camilstaps]
 - [Mart Lubbers][dopefishh]
 
-This plugin is based on previous work by:
+### Contributors
 
-- [norm2782][norm2782-vim-clean] (original author)
-- [timjs][timjs-syntax] (new syntax highlighting)
-
-The present authors have made several highlighting improvements and added many
-features (see below).
+- [mklinik][mklinik]
+- [norm2782][norm2782-vim-clean]
+- [timjs][timjs-syntax]
 
 ---
 
@@ -41,5 +39,6 @@ definition (for instance).
 [norm2782-vim-clean]: https://github.com/norm2782/vim-clean
 [timjs-syntax]: https://github.com/timjs/vim-clean/tree/timjs-syntax
 [dopefishh]: https://github.com/dopefishh
+[mklinik]: https://github.com/mklinik
 [curl]: https://curl.haxx.se/
 [tags]: https://github.com/clean-cloogle/cloogle-tags
