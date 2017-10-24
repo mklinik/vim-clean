@@ -38,7 +38,7 @@ function! cleanvim#tags#choosemodule(msg, tag)
 endfun
 
 function! cleanvim#tags#jump(str, cmd, implementation)
-  let result = s:CleanChooseModuleForTag('Select module to load:', a:str)
+  let result = cleanvim#tags#choosemodule('Select module to load:', a:str)
   if result == {}
     return
   endif

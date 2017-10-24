@@ -56,7 +56,7 @@ function! cleanvim#imports#auto(str, selective)
     let import = 'import ' . result.module
   endif
 
-  call s:cleanvim#imports#add(result.module, import)
+  call cleanvim#imports#add(result.module, import)
 endfun
 
 function! cleanvim#imports#init()
